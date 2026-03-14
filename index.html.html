@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>Kenpro Movies</title>
+  <!-- PWA Meta Tags -->
+  <meta name="application-name" content="Kenpro Movies"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="Kenpro Movies"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="theme-color" content="#141416"/>
+  <meta name="description" content="Watch Movies, TvShows, Series, Animation & Indian films free. Download with subscription."/>
+  <!-- Apple Touch Icon -->
+  <link rel="apple-touch-icon" href="data:image/png;base64,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"/>
+  <!-- Manifest inline -->
+  <link rel="manifest" href="data:application/manifest+json;charset=utf-8,"{\"name\": \"Kenpro Movies\", \"short_name\": \"Kenpro\", \"description\": \"Watch and download movies, TvShows, Series, Animation & Indian films.\", \"start_url\": \"./\", \"display\": \"standalone\", \"background_color\": \"#141416\", \"theme_color\": \"#141416\", \"orientation\": \"portrait\", \"icons\": [{\"src\": \"data:image/png;base64,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\", \"sizes\": \"192x192\", \"type\": \"image/png\", \"purpose\": \"any maskable\"}, {\"src\": \"data:image/png;base64,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\", \"sizes\": \"512x512\", \"type\": \"image/png\", \"purpose\": \"any maskable\"}]}""/>
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+:root{
+  --bg:#141416;--bg2:#1c1c1f;--bg3:#242428;--card:#1e1e22;
+  --cyan:#3DD6F5;--green:#4AE68A;--white:#f0f0f0;--muted:#8e8e93;
+  --red:#FF4C4C;--yellow:#FFD700;--orange:#FF9500;
+  --radius:12px;
+}
+html,body{height:100%;background:#0a0a0a;color:var(--white);font-family:'Nunito',sans-serif;overflow-x:hidden;}
+
+.phone-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
+.phone{width:390px;min-height:844px;background:var(--bg);border-radius:44px;overflow:hidden;position:relative;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 40px 80px rgba(0,0,0,.8);display:flex;flex-direction:column;}
+
+/* PAGES */
+.page{display:none;flex-direction:column;height:100%;}
+.page.active{display:flex;}
+
+/* STATUS BAR */
+.status-bar{display:flex;justify-content:space-between;align-items:center;padding:14px 28px 4px;font-size:.72rem;font-weight:700;flex-shrink:0;}
+
+/* CONTENT SCROLL */
+.content{flex:1;overflow-y:auto;overflow-x:hidden;padding-bottom:84px;scrollbar-width:none;}
+.content::-webkit-scrollbar{display:none;}
+
+/* TOP BAR */
+.top-bar{display:flex;justify-content:space-between;align-items:center;padding:8px 18px 12px;}
+.top-logo{font-size:1.15rem;font-weight:900;color:var(--cyan);}
+.top-logo span{color:var(--white);}
+.top-icons{display:flex;gap:6px;align-items:center;}
+.top-icon-btn{width:36px;height:36px;border-radius:10px;background:var(--bg3);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+.top-icon-btn:active{background:var(--bg2);}
+.top-icon-btn svg{width:18px;height:18px;}
+.sub-pill{background:rgba(255,215,0,.18);color:var(--yellow);font-size:.65rem;font-weight:800;padding:7px 12px;border-radius:20px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;}
+
+/* SEARCH */
+.search-wrap{padding:0 18px 14px;}
+.search-bar{background:var(--bg3);border-radius:12px;display:flex;align-items:center;padding:11px 16px;gap:10px;}
+.search-bar svg{width:16px;height:16px;flex-shrink:0;opacity:.5;}
+.search-bar input{background:none;border:none;outline:none;color:var(--muted);font-family:'Nunito',sans-serif;font-size:.88rem;flex:1;}
+
+/* FEATURED */
+.featured{margin:0 18px 20px;border-radius:16px;overflow:hidden;position:relative;height:200px;cursor:pointer;background:var(--bg2);}
+.featured-img-bg{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.featured-ph{position:absolute;inset:0;background:linear-gradient(135deg,#0a1020,#1a0a10,#0a1520);display:flex;align-items:center;justify-content:center;}
+.featured-gradient{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.93) 0%,rgba(0,0,0,.15) 65%,transparent 100%);}
+.featured-info{position:absolute;bottom:0;left:0;right:0;padding:12px 16px;}
+.featured-badge{display:inline-block;background:var(--cyan);color:#000;font-size:.52rem;font-weight:800;padding:3px 8px;border-radius:4px;margin-bottom:5px;letter-spacing:.08em;}
+.featured-title{font-size:1.05rem;font-weight:900;margin-bottom:3px;}
+.featured-meta{font-size:.68rem;color:rgba(255,255,255,.6);}
+.vj-green{color:var(--green);font-weight:800;}
+.featured-btns{display:flex;gap:8px;margin-top:9px;}
+.btn-watch-now{background:var(--white);color:#000;font-size:.68rem;font-weight:800;padding:8px 16px;border-radius:8px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;display:flex;align-items:center;gap:5px;}
+.btn-dl-feat{background:rgba(255,215,0,.18);color:var(--yellow);font-size:.68rem;font-weight:800;padding:8px 16px;border-radius:8px;border:1px solid rgba(255,215,0,.25);cursor:pointer;font-family:'Nunito',sans-serif;}
+
+/* SECTIONS */
+.section{margin-bottom:4px;}
+.sec-head{display:flex;justify-content:space-between;align-items:center;padding:14px 18px 10px;}
+.sec-title-row{display:flex;align-items:center;gap:8px;}
+.sec-bar{width:3px;height:20px;background:var(--cyan);border-radius:2px;flex-shrink:0;}
+.sec-title{font-size:1rem;font-weight:900;}
+.sec-all{font-size:.7rem;color:var(--muted);font-weight:700;}
+
+/* CARDS ROW */
+.cards-row{display:flex;gap:0;overflow-x:auto;padding:0 18px 6px;scrollbar-width:none;}
+.cards-row::-webkit-scrollbar{display:none;}
+.movie-card{flex-shrink:0;width:130px;margin-right:11px;cursor:pointer;border-radius:var(--radius);overflow:hidden;background:var(--card);transition:transform .15s;}
+.movie-card:active{transform:scale(.96);}
+.movie-card-thumb{width:100%;aspect-ratio:2/3;background:var(--bg3);position:relative;overflow:hidden;}
+.movie-card-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.thumb-ph{width:100%;height:100%;display:flex;align-items:flex-end;padding:8px;}
+.tag-free{position:absolute;top:6px;left:6px;background:rgba(74,230,138,.2);color:var(--green);font-size:.48rem;font-weight:800;padding:2px 5px;border-radius:3px;border:1px solid rgba(74,230,138,.3);}
+.tag-sub{position:absolute;top:6px;left:6px;background:rgba(255,215,0,.2);color:var(--yellow);font-size:.48rem;font-weight:800;padding:2px 5px;border-radius:3px;border:1px solid rgba(255,215,0,.3);}
+.fav-btn{position:absolute;top:6px;right:6px;width:24px;height:24px;background:rgba(0,0,0,.5);border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.fav-btn svg{width:13px;height:13px;}
+.movie-card-info{padding:7px 9px 9px;}
+.movie-card-title{font-size:.74rem;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px;}
+.movie-card-vj{font-size:.62rem;font-weight:800;color:var(--green);}
+.vj-ul{border-bottom:1.5px solid var(--green);display:inline-block;padding-bottom:1px;}
+
+/* ── PLAYER PAGE ── */
+.player-page{display:none;flex-direction:column;height:100%;background:#000;}
+.player-page.active{display:flex;}
+.player-topbar{display:flex;align-items:center;gap:10px;padding:14px 16px 10px;background:#000;flex-shrink:0;}
+.player-back{background:rgba(255,255,255,.1);border:none;color:var(--white);font-size:.8rem;font-weight:800;padding:8px 14px;border-radius:8px;cursor:pointer;font-family:'Nunito',sans-serif;}
+.player-title-bar{font-size:.9rem;font-weight:900;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.player-fav{background:rgba(255,255,255,.1);border:none;color:var(--white);padding:8px 10px;border-radius:8px;cursor:pointer;display:flex;align-items:center;}
+.player-fav svg{width:16px;height:16px;}
+/* VIDEO */
+.video-wrap{width:100%;background:#000;flex-shrink:0;}
+.video-wrap video{width:100%;max-height:220px;object-fit:contain;display:block;background:#000;}
+.video-cover{width:100%;height:200px;background:linear-gradient(135deg,#080810,#100808);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer;}
+.play-circle{width:64px;height:64px;background:rgba(255,255,255,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,.2);}
+.play-tri{width:0;height:0;border-left:24px solid var(--white);border-top:15px solid transparent;border-bottom:15px solid transparent;margin-left:5px;}
+.no-video-txt{font-size:.72rem;color:var(--muted);font-weight:700;}
+/* PLAYER INFO */
+.player-info{flex:1;overflow-y:auto;padding:16px 18px;scrollbar-width:none;}
+.player-info::-webkit-scrollbar{display:none;}
+.pi-title{font-size:1.1rem;font-weight:900;margin-bottom:4px;}
+.pi-meta{font-size:.72rem;color:var(--muted);margin-bottom:3px;}
+.pi-vj{font-size:.75rem;font-weight:800;color:var(--green);margin-bottom:12px;}
+.pi-desc{font-size:.8rem;line-height:1.6;color:rgba(240,240,240,.55);margin-bottom:18px;}
+.pi-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.btn-play-free{background:var(--white);color:#000;font-size:.78rem;font-weight:900;padding:13px;border-radius:10px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;text-align:center;}
+.btn-dl-sub{background:linear-gradient(135deg,#96680a,#ffd700);color:#000;font-size:.78rem;font-weight:900;padding:13px;border-radius:10px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;text-align:center;line-height:1.3;}
+.sub-note{background:rgba(255,215,0,.07);border:1px solid rgba(255,215,0,.18);border-radius:10px;padding:12px 14px;font-size:.7rem;color:rgba(240,240,240,.55);line-height:1.55;}
+.sub-note strong{color:var(--yellow);}
+.sub-note .wa-link{color:var(--green);cursor:pointer;font-weight:800;}
+
+/* ── FAVOURITES PAGE ── */
+.favs-empty{text-align:center;padding:50px 20px;color:var(--muted);}
+.favs-empty svg{width:48px;height:48px;opacity:.3;margin-bottom:12px;}
+.favs-empty p{font-size:.85rem;font-weight:700;}
+.favs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 18px;}
+
+/* ── SETTINGS PAGE ── */
+.settings-content{flex:1;overflow-y:auto;padding:18px;scrollbar-width:none;}
+.settings-content::-webkit-scrollbar{display:none;}
+.settings-section{margin-bottom:20px;}
+.settings-label{font-size:.65rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;padding:0 2px;}
+.settings-card{background:var(--bg2);border-radius:14px;overflow:hidden;}
+.settings-item{display:flex;align-items:center;gap:14px;padding:15px 16px;border-bottom:1px solid rgba(255,255,255,.05);cursor:pointer;transition:background .15s;}
+.settings-item:last-child{border-bottom:none;}
+.settings-item:active{background:var(--bg3);}
+.si-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.si-icon svg{width:18px;height:18px;}
+.ic-cyan{background:rgba(61,214,245,.15);}
+.ic-green{background:rgba(74,230,138,.15);}
+.ic-yellow{background:rgba(255,215,0,.12);}
+.ic-red{background:rgba(255,76,76,.12);}
+.ic-orange{background:rgba(255,149,0,.12);}
+.si-info{flex:1;}
+.si-label{font-size:.88rem;font-weight:800;}
+.si-sub{font-size:.65rem;color:var(--muted);margin-top:2px;}
+.si-arrow{font-size:.85rem;color:var(--muted);}
+.toggle{width:42px;height:24px;background:var(--bg3);border-radius:12px;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;}
+.toggle.on{background:var(--cyan);}
+.toggle::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .2s;}
+.toggle.on::after{transform:translateX(18px);}
+.wa-contact-btn{width:100%;background:linear-gradient(135deg,#1a8a3a,#25d366);color:#fff;font-size:.9rem;font-weight:900;padding:15px;border-radius:14px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px;}
+.call-btn{width:100%;background:rgba(61,214,245,.15);color:var(--cyan);font-size:.9rem;font-weight:900;padding:15px;border-radius:14px;border:1px solid rgba(61,214,245,.25);cursor:pointer;font-family:'Nunito',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;}
+.wa-icon-svg{width:22px;height:22px;}
+
+/* ── ADMIN PAGE ── */
+.admin-header{background:var(--bg2);padding:18px 22px 13px;border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0;}
+.admin-header-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;}
+.admin-title{font-size:1.15rem;font-weight:900;color:var(--cyan);}
+.admin-badge{background:rgba(61,214,245,.15);color:var(--cyan);font-size:.58rem;font-weight:800;padding:4px 10px;border-radius:20px;letter-spacing:.1em;}
+.admin-sub{font-size:.72rem;color:var(--muted);}
+.admin-content{flex:1;overflow-y:auto;padding:16px;scrollbar-width:none;}
+.admin-content::-webkit-scrollbar{display:none;}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;}
+.stat-box{background:var(--bg2);border-radius:12px;padding:13px 8px;text-align:center;}
+.stat-n{font-size:1.5rem;font-weight:900;color:var(--cyan);}
+.stat-l{font-size:.58rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:2px;}
+.admin-tabs{display:flex;gap:4px;margin-bottom:16px;}
+.atab{flex:1;padding:9px;text-align:center;border-radius:10px;background:var(--bg3);font-size:.7rem;font-weight:800;color:var(--muted);cursor:pointer;transition:all .2s;}
+.atab.active{background:var(--cyan);color:#000;}
+.tab-pane{display:none;}
+.tab-pane.active{display:block;}
+.upload-card{background:var(--bg2);border-radius:14px;padding:16px;margin-bottom:13px;}
+.uc-title{font-size:.82rem;font-weight:800;color:var(--white);margin-bottom:13px;display:flex;align-items:center;gap:7px;}
+.uc-title::before{content:'';display:block;width:3px;height:15px;background:var(--cyan);border-radius:2px;}
+.form-group{margin-bottom:11px;}
+.form-label{font-size:.65rem;font-weight:700;color:var(--muted);margin-bottom:5px;display:block;letter-spacing:.07em;text-transform:uppercase;}
+.form-input{width:100%;background:var(--bg3);border:1.5px solid rgba(255,255,255,.07);border-radius:10px;padding:10px 13px;color:var(--white);font-family:'Nunito',sans-serif;font-size:.83rem;outline:none;transition:border-color .2s;}
+.form-input:focus{border-color:var(--cyan);}
+.form-input::placeholder{color:var(--muted);}
+textarea.form-input{resize:none;height:68px;line-height:1.5;}
+select.form-input{appearance:none;cursor:pointer;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.drop-zone{border:2px dashed rgba(61,214,245,.3);border-radius:12px;padding:22px 18px;text-align:center;cursor:pointer;background:rgba(61,214,245,.03);transition:border-color .2s;margin-bottom:11px;position:relative;}
+.drop-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.drop-title{font-size:.82rem;font-weight:800;color:var(--white);margin-bottom:3px;}
+.drop-sub{font-size:.68rem;color:var(--muted);}
+.drop-fmt{font-size:.6rem;color:var(--cyan);margin-top:5px;font-weight:700;}
+.poster-drop{border:2px dashed rgba(255,255,255,.1);border-radius:10px;height:88px;cursor:pointer;background:var(--bg3);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.poster-drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.poster-drop-txt{font-size:.68rem;font-weight:700;color:var(--muted);text-align:center;line-height:1.5;pointer-events:none;}
+.btn-submit{width:100%;padding:14px;background:var(--cyan);color:#000;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:900;border:none;border-radius:12px;cursor:pointer;transition:transform .15s;}
+.btn-submit:active{transform:scale(.98);}
+.mli{background:var(--bg2);border-radius:11px;padding:11px 13px;display:flex;gap:11px;align-items:center;margin-bottom:8px;cursor:pointer;transition:background .15s;}
+.mli:active{background:var(--bg3);}
+.mli-thumb{width:44px;height:58px;border-radius:7px;background:var(--bg3);flex-shrink:0;overflow:hidden;}
+.mli-thumb img{width:100%;height:100%;object-fit:cover;}
+.mli-ph{width:100%;height:100%;background:linear-gradient(135deg,#1e2030,#2a1e30);display:flex;align-items:center;justify-content:center;font-size:.48rem;font-weight:700;color:var(--muted);text-align:center;padding:4px;}
+.mli-info{flex:1;min-width:0;}
+.mli-title{font-size:.82rem;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mli-meta{font-size:.62rem;color:var(--muted);margin-top:2px;}
+.mli-vj{font-size:.6rem;font-weight:800;color:var(--green);margin-top:2px;}
+.mli-status{font-size:.56rem;font-weight:700;padding:2px 7px;border-radius:4px;margin-top:4px;display:inline-block;}
+.s-live{background:rgba(74,230,138,.15);color:var(--green);}
+.s-draft{background:rgba(255,215,0,.12);color:var(--yellow);}
+.mli-actions{display:flex;flex-direction:column;gap:5px;flex-shrink:0;}
+.btn-e,.btn-d{font-size:.56rem;font-weight:800;padding:5px 9px;border-radius:6px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;}
+.btn-e{background:rgba(61,214,245,.15);color:var(--cyan);}
+.btn-d{background:rgba(255,76,76,.15);color:var(--red);}
+
+/* SUB SHEET */
+.sub-overlay{display:none;position:absolute;inset:0;z-index:400;background:rgba(0,0,0,.75);align-items:flex-end;}
+.sub-overlay.open{display:flex;}
+.sub-sheet{background:var(--bg2);border-radius:24px 24px 0 0;padding:22px 18px 34px;width:100%;}
+.ss-title{font-size:1.05rem;font-weight:900;text-align:center;margin-bottom:3px;}
+.ss-sub{font-size:.75rem;color:var(--muted);text-align:center;margin-bottom:18px;}
+.plan{background:var(--bg3);border-radius:11px;padding:14px;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center;border:2px solid transparent;cursor:pointer;transition:all .2s;}
+.plan.sel{border-color:var(--yellow);background:rgba(255,215,0,.07);}
+.plan-name{font-size:.88rem;font-weight:800;}
+.plan-desc{font-size:.65rem;color:var(--muted);margin-top:2px;}
+.plan-price{font-size:1.05rem;font-weight:900;color:var(--yellow);text-align:right;}
+.plan-period{font-size:.58rem;color:var(--muted);}
+.rec-b{background:var(--yellow);color:#000;font-size:.52rem;font-weight:800;padding:2px 5px;border-radius:3px;margin-left:5px;}
+.btn-sub-wa{width:100%;background:linear-gradient(135deg,#1a8a3a,#25d366);color:#fff;font-size:.85rem;font-weight:900;padding:14px;border-radius:12px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;margin-top:10px;}
+.btn-cancel{width:100%;background:transparent;color:var(--muted);font-size:.75rem;font-weight:700;padding:9px;border-radius:12px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;margin-top:3px;}
+
+/* BOTTOM NAV */
+.bottom-nav{position:absolute;bottom:0;left:0;right:0;background:rgba(18,18,20,.97);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-around;align-items:center;padding:10px 0 22px;z-index:100;}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;flex:1;padding:4px 0;}
+.nav-dot{width:5px;height:5px;border-radius:50%;background:transparent;margin-top:1px;}
+.nav-item.active .nav-dot{background:var(--cyan);}
+.nav-label{font-size:.58rem;font-weight:700;color:var(--muted);}
+.nav-item.active .nav-label{color:var(--cyan);}
+.nav-item svg{width:22px;height:22px;stroke:var(--muted);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s;}
+.nav-item.active svg{stroke:var(--cyan);}
+
+/* TOAST */
+.toast{position:absolute;bottom:92px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--green);color:#000;font-size:.72rem;font-weight:800;padding:9px 18px;border-radius:10px;opacity:0;transition:all .3s;white-space:nowrap;z-index:600;pointer-events:none;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+<div class="phone-wrap">
+<div class="phone" id="app">
+
+<!-- ==================== HOME ==================== -->
+<div class="page active" id="page-home">
+  <div class="status-bar"><span>9:41</span><span style="font-size:.7rem;color:var(--muted);">Kenpro Movies</span></div>
+  <div class="content">
+    <div class="top-bar">
+      <div class="top-logo">KENPRO <span>Movies</span></div>
+      <div class="top-icons">
+        <!-- WhatsApp icon -->
+        <button class="top-icon-btn" onclick="openWA()" title="WhatsApp">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M20.52 3.48A11.93 11.93 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52z" fill="#25D366"/>
+            <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.68-2.08-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.5-.5-.67-.51-.17-.01-.37-.01-.57-.01s-.52.07-.8.37c-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.22 3.07c.15.2 2.1 3.2 5.08 4.48.71.3 1.27.48 1.7.62.72.22 1.37.19 1.88.11.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z" fill="white"/>
+          </svg>
+        </button>
+        <!-- Favourites icon -->
+        <button class="top-icon-btn" onclick="navTo('fav')" title="Favourites">
+          <svg viewBox="0 0 24 24" stroke="var(--white)" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <!-- Settings icon -->
+        <button class="top-icon-btn" onclick="navTo('settings')" title="Settings">
+          <svg viewBox="0 0 24 24" stroke="var(--white)" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+        <button class="sub-pill" onclick="openSubModal()">SUBSCRIBE</button>
+      </div>
+    </div>
+    <div class="search-wrap">
+      <div class="search-bar">
+        <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Search Movies, Series, Animation..." id="search-input" oninput="handleSearch()"/>
+      </div>
+    </div>
+    <!-- FEATURED -->
+    <div class="featured" id="featured-card" onclick="openPlayer(null,'featured')">
+      <div class="featured-ph" id="feat-ph"></div>
+      <img id="feat-img" class="featured-img-bg" style="display:none;" alt=""/>
+      <div class="featured-gradient"></div>
+      <div class="featured-info">
+        <div class="featured-badge">FEATURED</div>
+        <div class="featured-title" id="feat-title">The Return</div>
+        <div class="featured-meta"><span class="vj-green" id="feat-vj">VJ EMMY</span> &nbsp;·&nbsp; <span id="feat-genre">Action, Drama</span> &nbsp;·&nbsp; <span id="feat-year">2025</span></div>
+        <div class="featured-btns">
+          <button class="btn-watch-now" onclick="event.stopPropagation();openPlayer(null,'featured')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#000"><polygon points="5 3 19 12 5 21 5 3"/></svg>Watch Free
+          </button>
+          <button class="btn-dl-feat" onclick="event.stopPropagation();openSubModal()">⬇ Download</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTIONS -->
+    <div class="section"><div class="sec-head"><div class="sec-title-row"><div class="sec-bar"></div><div class="sec-title">Latest Movies</div></div><span class="sec-all">See all →</span></div><div class="cards-row" id="row-movie"></div></div>
+    <div class="section"><div class="sec-head"><div class="sec-title-row"><div class="sec-bar"></div><div class="sec-title">Latest TvShows</div></div><span class="sec-all">See all →</span></div><div class="cards-row" id="row-tvshow"></div></div>
+    <div class="section"><div class="sec-head"><div class="sec-title-row"><div class="sec-bar"></div><div class="sec-title">Series</div></div><span class="sec-all">See all →</span></div><div class="cards-row" id="row-series"></div></div>
+    <div class="section"><div class="sec-head"><div class="sec-title-row"><div class="sec-bar"></div><div class="sec-title">Latest Animation</div></div><span class="sec-all">See all →</span></div><div class="cards-row" id="row-animation"></div></div>
+    <div class="section"><div class="sec-head"><div class="sec-title-row"><div class="sec-bar"></div><div class="sec-title">Indian Movies</div></div><span class="sec-all">See all →</span></div><div class="cards-row" id="row-indian"></div></div>
+    <div style="height:10px;"></div>
+  </div>
+  <div class="bottom-nav">
+    <div class="nav-item active" onclick="navTo('home',this)">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span class="nav-label">Home</span><div class="nav-dot"></div>
+    </div>
+    <div class="nav-item" onclick="navTo('fav',this)">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span class="nav-label">Favourites</span><div class="nav-dot"></div>
+    </div>
+    <div class="nav-item" onclick="navTo('settings',this)">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      <span class="nav-label">Settings</span><div class="nav-dot"></div>
+    </div>
+    <div class="nav-item" onclick="navTo('admin',this)">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <span class="nav-label">Admin</span><div class="nav-dot"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PLAYER PAGE ==================== -->
+<div class="player-page" id="page-player">
+  <div class="player-topbar">
+    <button class="player-back" onclick="closePlayer()">← Back</button>
+    <div class="player-title-bar" id="player-title">Now Playing</div>
+    <button class="player-fav" onclick="toggleFavCurrent()" id="fav-btn-player">
+      <svg viewBox="0 0 24 24" stroke="var(--white)" fill="none" stroke-width="2" id="fav-icon-player"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </button>
+  </div>
+  <div class="video-wrap">
+    <video id="video-el" controls style="display:none;width:100%;max-height:220px;background:#000;"></video>
+    <div class="video-cover" id="video-cover" onclick="tryPlay()">
+      <div class="play-circle"><div class="play-tri"></div></div>
+      <div class="no-video-txt" id="no-vid-txt">Tap to Play</div>
+    </div>
+  </div>
+  <div class="player-info">
+    <div class="pi-title" id="pi-title"></div>
+    <div class="pi-meta" id="pi-meta"></div>
+    <div class="pi-vj" id="pi-vj"></div>
+    <div class="pi-desc" id="pi-desc"></div>
+    <div class="pi-actions">
+      <button class="btn-play-free" onclick="tryPlay()">▶ Watch Free</button>
+      <button class="btn-dl-sub" onclick="openSubModal()">⬇ Download<br><span style="font-size:.58rem;opacity:.7;">Subscription only</span></button>
+    </div>
+    <div class="sub-note">
+      <strong>Watching is always FREE.</strong> To download and watch offline, subscribe. <span class="wa-link" onclick="openSubModal()">View plans →</span>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FAVOURITES ==================== -->
+<div class="page" id="page-fav">
+  <div class="status-bar"><span>9:41</span><span style="font-size:.7rem;color:var(--muted);">Favourites</span></div>
+  <div class="content" style="padding-top:8px;">
+    <div style="font-size:1.15rem;font-weight:900;padding:4px 18px 14px;">My Favourites</div>
+    <div class="favs-grid" id="favs-grid">
+      <div class="favs-empty" style="grid-column:1/-1;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <p>No favourites yet.<br><span style="font-weight:400;font-size:.75rem;">Tap the heart on any movie.</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="nav-item" onclick="navTo('home',this)"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span class="nav-label">Home</span><div class="nav-dot"></div></div>
+    <div class="nav-item active" onclick="navTo('fav',this)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="nav-label">Favourites</span><div class="nav-dot"></div></div>
+    <div class="nav-item" onclick="navTo('settings',this)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span class="nav-label">Settings</span><div class="nav-dot"></div></div>
+    <div class="nav-item" onclick="navTo('admin',this)"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span class="nav-label">Admin</span><div class="nav-dot"></div></div>
+  </div>
+</div>
+
+<!-- ==================== SETTINGS ==================== -->
+<div class="page" id="page-settings">
+  <div class="status-bar"><span>9:41</span><span style="font-size:.7rem;color:var(--muted);">Settings</span></div>
+  <div class="settings-content">
+    <div style="font-size:1.15rem;font-weight:900;padding:4px 2px 18px;">Settings</div>
+
+    <!-- Contact buttons -->
+    <button class="wa-contact-btn" onclick="openWA()">
+      <svg class="wa-icon-svg" viewBox="0 0 24 24" fill="none">
+        <path d="M20.52 3.48A11.93 11.93 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52z" fill="white"/>
+        <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.68-2.08-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.5-.5-.67-.51-.17-.01-.37-.01-.57-.01s-.52.07-.8.37c-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.22 3.07c.15.2 2.1 3.2 5.08 4.48.71.3 1.27.48 1.7.62.72.22 1.37.19 1.88.11.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z" fill="#25D366"/>
+      </svg>
+      WhatsApp Us: +256 702 381 857
+    </button>
+    <button class="call-btn" onclick="makeCall()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.57 3.42 2 2 0 0 1 3.54 1.25h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+      Call Us: +256 702 381 857
+    </button>
+
+    <div style="height:20px;"></div>
+
+    <div class="settings-section">
+      <div class="settings-label">Account</div>
+      <div class="settings-card">
+        <div class="settings-item" onclick="openSubModal()">
+          <div class="si-icon ic-yellow"><svg viewBox="0 0 24 24" stroke="var(--yellow)" fill="none" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <div class="si-info"><div class="si-label">Subscription</div><div class="si-sub">Unlock downloads</div></div>
+          <div class="si-arrow">›</div>
+        </div>
+        <div class="settings-item">
+          <div class="si-icon ic-cyan"><svg viewBox="0 0 24 24" stroke="var(--cyan)" fill="none" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div class="si-info"><div class="si-label">My Account</div><div class="si-sub">Profile & preferences</div></div>
+          <div class="si-arrow">›</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-label">Preferences</div>
+      <div class="settings-card">
+        <div class="settings-item">
+          <div class="si-icon ic-green"><svg viewBox="0 0 24 24" stroke="var(--green)" fill="none" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+          <div class="si-info"><div class="si-label">Auto-play</div><div class="si-sub">Play next automatically</div></div>
+          <div class="toggle on" id="toggle-autoplay" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="settings-item">
+          <div class="si-icon ic-orange"><svg viewBox="0 0 24 24" stroke="var(--orange)" fill="none" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
+          <div class="si-info"><div class="si-label">Video Quality</div><div class="si-sub">Auto (recommended)</div></div>
+          <div class="si-arrow">›</div>
+        </div>
+        <div class="settings-item">
+          <div class="si-icon ic-cyan"><svg viewBox="0 0 24 24" stroke="var(--cyan)" fill="none" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></div>
+          <div class="si-info"><div class="si-label">Notifications</div><div class="si-sub">New releases & updates</div></div>
+          <div class="toggle on" id="toggle-notif" onclick="this.classList.toggle('on')"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-label">Support</div>
+      <div class="settings-card">
+        <div class="settings-item" onclick="openWA()">
+          <div class="si-icon ic-green"><svg viewBox="0 0 24 24" stroke="var(--green)" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div class="si-info"><div class="si-label">Chat Support</div><div class="si-sub">WhatsApp: +256 702 381 857</div></div>
+          <div class="si-arrow">›</div>
+        </div>
+        <div class="settings-item" onclick="makeCall()">
+          <div class="si-icon ic-cyan"><svg viewBox="0 0 24 24" stroke="var(--cyan)" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.57 3.42 2 2 0 0 1 3.54 1.25h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg></div>
+          <div class="si-info"><div class="si-label">Call Support</div><div class="si-sub">+256 702 381 857</div></div>
+          <div class="si-arrow">›</div>
+        </div>
+        <div class="settings-item">
+          <div class="si-icon ic-red"><svg viewBox="0 0 24 24" stroke="var(--red)" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+          <div class="si-info"><div class="si-label">About Kenpro Movies</div><div class="si-sub">Version 1.0.0</div></div>
+          <div class="si-arrow">›</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="nav-item" onclick="navTo('home',this)"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span class="nav-label">Home</span><div class="nav-dot"></div></div>
+    <div class="nav-item" onclick="navTo('fav',this)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="nav-label">Favourites</span><div class="nav-dot"></div></div>
+    <div class="nav-item active" onclick="navTo('settings',this)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span class="nav-label">Settings</span><div class="nav-dot"></div></div>
+    <div class="nav-item" onclick="navTo('admin',this)"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span class="nav-label">Admin</span><div class="nav-dot"></div></div>
+  </div>
+</div>
+
+<!-- ==================== ADMIN ==================== -->
+<div class="page" id="page-admin">
+  <div class="admin-header">
+    <div class="admin-header-top"><div class="admin-title">Admin Panel</div><div class="admin-badge">KENPRO</div></div>
+    <div class="admin-sub">Upload &amp; manage all content</div>
+  </div>
+  <div class="admin-content">
+    <div class="stats-row">
+      <div class="stat-box"><div class="stat-n" id="stat-total">0</div><div class="stat-l">Movies</div></div>
+      <div class="stat-box"><div class="stat-n" id="stat-live">0</div><div class="stat-l">Live</div></div>
+      <div class="stat-box"><div class="stat-n" id="stat-draft">0</div><div class="stat-l">Drafts</div></div>
+    </div>
+    <div class="admin-tabs">
+      <div class="atab active" onclick="switchTab('upload',this)">Upload</div>
+      <div class="atab" onclick="switchTab('manage',this)">Manage</div>
+    </div>
+    <div class="tab-pane active" id="tab-upload">
+      <div class="upload-card">
+        <div class="uc-title">Movie Details</div>
+        <div class="form-group"><label class="form-label">Title *</label><input class="form-input" id="inp-title" type="text" placeholder="Movie title"/></div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Section *</label>
+            <select class="form-input" id="inp-section">
+              <option value="movie">Latest Movies</option><option value="tvshow">TvShows</option>
+              <option value="series">Series</option><option value="animation">Animation</option>
+              <option value="indian">Indian Movies</option><option value="featured">Set as Featured</option>
+            </select>
+          </div>
+          <div class="form-group"><label class="form-label">Genre</label>
+            <select class="form-input" id="inp-genre">
+              <option value="">Select</option><option>Action</option><option>Drama</option>
+              <option>Thriller</option><option>Romance</option><option>Comedy</option>
+              <option>Horror</option><option>Sci-Fi</option><option>Mystery</option>
+              <option>Animation</option><option>Bollywood</option><option>South Indian</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">VJ Name</label><input class="form-input" id="inp-vj" type="text" placeholder="e.g. VJ EMMY"/></div>
+          <div class="form-group"><label class="form-label">Year</label><input class="form-input" id="inp-year" type="number" placeholder="2025"/></div>
+        </div>
+        <div class="form-group"><label class="form-label">Description</label><textarea class="form-input" id="inp-desc" placeholder="Short description..."></textarea></div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Watch</label><select class="form-input" id="inp-watch"><option value="free">Free</option><option value="sub">Subscription</option></select></div>
+          <div class="form-group"><label class="form-label">Download</label><select class="form-input" id="inp-dl"><option value="sub">Subscription</option><option value="free">Free</option></select></div>
+        </div>
+        <div class="form-group"><label class="form-label">Status</label><select class="form-input" id="inp-status"><option value="live">Live</option><option value="draft">Draft</option></select></div>
+      </div>
+      <div class="upload-card">
+        <div class="uc-title">Poster Image</div>
+        <div class="poster-drop" onclick="document.getElementById('poster-file').click()">
+          <input type="file" id="poster-file" accept="image/*" style="display:none" onchange="handlePoster(event)"/>
+          <div class="poster-drop-txt" id="poster-drop-txt">Tap to upload poster<br><span style="color:var(--cyan);font-size:.6rem;">JPG · PNG · WEBP</span></div>
+          <img id="poster-preview" style="display:none;width:100%;height:100%;object-fit:cover;border-radius:8px;"/>
+        </div>
+      </div>
+      <div class="upload-card">
+        <div class="uc-title">Movie File</div>
+        <div class="drop-zone">
+          <input type="file" id="movie-file" accept="video/*" onchange="handleMovieFile(event)"/>
+          <div class="drop-title" id="drop-title">Tap to upload movie file</div>
+          <div class="drop-sub" id="drop-sub">Or drag &amp; drop here</div>
+          <div class="drop-fmt">MP4 · MKV · AVI · MOV</div>
+        </div>
+        <div id="file-progress" style="display:none;">
+          <div style="font-size:.65rem;color:var(--muted);margin-bottom:5px;" id="file-name-label"></div>
+          <div style="height:5px;background:var(--bg3);border-radius:3px;overflow:hidden;"><div id="prog-bar" style="height:100%;background:var(--cyan);border-radius:3px;width:0%;transition:width .2s;"></div></div>
+          <div style="font-size:.6rem;color:var(--cyan);margin-top:3px;font-weight:700;" id="prog-label">0%</div>
+        </div>
+      </div>
+      <button class="btn-submit" onclick="uploadMovie()">UPLOAD MOVIE</button>
+    </div>
+    <div class="tab-pane" id="tab-manage">
+      <div id="movie-list"><div style="text-align:center;color:var(--muted);font-size:.8rem;padding:34px 0;font-weight:700;">No movies yet.</div></div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="nav-item" onclick="navTo('home',this)"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span class="nav-label">Home</span><div class="nav-dot"></div></div>
+    <div class="nav-item" onclick="navTo('fav',this)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="nav-label">Favourites</span><div class="nav-dot"></div></div>
+    <div class="nav-item" onclick="navTo('settings',this)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span class="nav-label">Settings</span><div class="nav-dot"></div></div>
+    <div class="nav-item active" onclick="navTo('admin',this)"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span class="nav-label">Admin</span><div class="nav-dot"></div></div>
+  </div>
+</div>
+
+<!-- SUBSCRIPTION SHEET -->
+<div class="sub-overlay" id="sub-overlay">
+  <div class="sub-sheet">
+    <div class="ss-title">Unlock Downloads</div>
+    <div class="ss-sub">Watching is FREE · Download needs subscription</div>
+    <div class="plan" onclick="selPlan(this,'weekly')"><div><div class="plan-name">Weekly</div><div class="plan-desc">7 days unlimited downloads</div></div><div><div class="plan-price">UGX 2,000</div><div class="plan-period">/week</div></div></div>
+    <div class="plan sel" onclick="selPlan(this,'monthly')"><div><div class="plan-name">Monthly <span class="rec-b">BEST</span></div><div class="plan-desc">30 days unlimited downloads</div></div><div><div class="plan-price">UGX 6,000</div><div class="plan-period">/month</div></div></div>
+    <div class="plan" onclick="selPlan(this,'yearly')"><div><div class="plan-name">Yearly</div><div class="plan-desc">365 days unlimited downloads</div></div><div><div class="plan-price">UGX 50,000</div><div class="plan-period">/year</div></div></div>
+    <button class="btn-sub-wa" onclick="subscribePlan()">Subscribe via WhatsApp</button>
+    <button class="btn-cancel" onclick="closeSubModal()">Maybe later</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+</div></div>
+<script>
+const WA = '256702381857';
+const PHONE = '+256702381857';
+let movies = [], favourites = [], currentMovie = null, posterDataUrl = null, selectedPlan = 'monthly', videoObjectUrl = null;
+
+// ── NAVIGATION ──
+function navTo(name, el) {
+  document.querySelectorAll('.page, .player-page').forEach(p => p.classList.remove('active'));
+  const pg = document.getElementById('page-' + name);
+  if (pg) pg.classList.add('active');
+  if (name === 'fav') renderFavs();
+  // update all nav items
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => {
+    if (n.getAttribute('onclick') && n.getAttribute('onclick').includes("'"+name+"'")) n.classList.add('active');
+  });
+}
+
+// ── PLAYER ──
+function openPlayer(id, type) {
+  let m;
+  if (type === 'featured') {
+    m = movies.find(mv => mv.section === 'featured' && mv.status === 'live') || {
+      id:'feat', title: document.getElementById('feat-title').textContent,
+      vj: document.getElementById('feat-vj').textContent,
+      genre: document.getElementById('feat-genre').textContent,
+      year: document.getElementById('feat-year').textContent,
+      desc:'A featured Kenpro Movies production.', watchType:'free', dlType:'sub', videoUrl:null, poster:null
+    };
+  } else { m = movies.find(mv => mv.id === id); }
+  if (!m) return;
+  currentMovie = m;
+
+  document.querySelectorAll('.page, .player-page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-player').classList.add('active');
+
+  document.getElementById('player-title').textContent = m.title;
+  document.getElementById('pi-title').textContent = m.title;
+  document.getElementById('pi-meta').textContent = (m.genre||'') + (m.year ? ' · ' + m.year : '');
+  document.getElementById('pi-vj').textContent = m.vj || '';
+  document.getElementById('pi-desc').textContent = m.desc || 'No description available.';
+
+  // fav icon
+  const isFav = favourites.some(f => f.id === m.id);
+  document.getElementById('fav-icon-player').setAttribute('fill', isFav ? 'var(--red)' : 'none');
+  document.getElementById('fav-icon-player').setAttribute('stroke', isFav ? 'var(--red)' : 'var(--white)');
+
+  const vid = document.getElementById('video-el');
+  const cover = document.getElementById('video-cover');
+  if (m.videoUrl) {
+    vid.src = m.videoUrl;
+    vid.style.display = 'block';
+    cover.style.display = 'none';
+  } else {
+    vid.src = ''; vid.style.display = 'none';
+    cover.style.display = 'flex';
+    document.getElementById('no-vid-txt').textContent = 'No video file uploaded';
+  }
+}
+
+function closePlayer() {
+  const vid = document.getElementById('video-el');
+  vid.pause(); vid.src = '';
+  document.querySelectorAll('.page, .player-page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-home').classList.add('active');
+}
+
+function tryPlay() {
+  const vid = document.getElementById('video-el');
+  if (vid.src && vid.src !== window.location.href) {
+    vid.style.display = 'block';
+    document.getElementById('video-cover').style.display = 'none';
+    vid.play().catch(()=>{});
+  } else { showToast('No video file attached to this movie.'); }
+}
+
+// ── FAVOURITES ──
+function toggleFav(id, event) {
+  if (event) event.stopPropagation();
+  const m = movies.find(mv => mv.id === id); if (!m) return;
+  const idx = favourites.findIndex(f => f.id === id);
+  if (idx > -1) { favourites.splice(idx, 1); showToast('Removed from favourites'); }
+  else { favourites.push(m); showToast('Added to favourites ♥'); }
+  renderHome(); renderFavs();
+}
+function toggleFavCurrent() {
+  if (!currentMovie || currentMovie.id === 'feat') { showToast('Sign in to save favourites'); return; }
+  const idx = favourites.findIndex(f => f.id === currentMovie.id);
+  if (idx > -1) { favourites.splice(idx, 1); showToast('Removed from favourites'); document.getElementById('fav-icon-player').setAttribute('fill','none'); document.getElementById('fav-icon-player').setAttribute('stroke','var(--white)'); }
+  else { favourites.push(currentMovie); showToast('Added to favourites ♥'); document.getElementById('fav-icon-player').setAttribute('fill','var(--red)'); document.getElementById('fav-icon-player').setAttribute('stroke','var(--red)'); }
+  renderFavs();
+}
+function renderFavs() {
+  const grid = document.getElementById('favs-grid');
+  if (favourites.length === 0) {
+    grid.innerHTML = `<div class="favs-empty" style="grid-column:1/-1;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><p>No favourites yet.<br><span style="font-weight:400;font-size:.75rem;">Tap ♥ on any movie.</span></p></div>`;
+    return;
+  }
+  const bgC = ['#1e2030','#2e1400','#1a1a2e','#2e0a0a','#1a2e0a','#2e1a2e'];
+  grid.innerHTML = favourites.map((m,i) => `
+    <div class="movie-card" onclick="openPlayer(${m.id})">
+      <div class="movie-card-thumb">
+        ${m.poster ? `<img src="${m.poster}" alt="${m.title}"/>` : `<div class="thumb-ph" style="background:linear-gradient(145deg,${bgC[i%6]},${bgC[(i+3)%6]});"><span style="font-size:.56rem;font-weight:800;color:rgba(255,255,255,.7);">${m.title}</span></div>`}
+        <div class="${m.watchType==='free'?'tag-free':'tag-sub'}">${m.watchType==='free'?'FREE':'SUB'}</div>
+        <button class="fav-btn" onclick="toggleFav(${m.id},event)"><svg viewBox="0 0 24 24" fill="var(--red)" stroke="var(--red)" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+      </div>
+      <div class="movie-card-info"><div class="movie-card-title">${m.title}</div><div class="movie-card-vj"><span class="vj-ul">${m.vj}</span></div></div>
+    </div>`).join('');
+}
+
+// ── SEARCH ──
+function handleSearch() {
+  const q = document.getElementById('search-input').value.trim().toLowerCase();
+  const sections = ['movie','tvshow','series','animation','indian'];
+  const rowIds = {movie:'row-movie',tvshow:'row-tvshow',series:'row-series',animation:'row-animation',indian:'row-indian'};
+  const bgC = ['#1e2030','#2e1400','#1a1a2e','#2e0a0a','#1a2e0a','#2e1a2e'];
+  if (!q) { renderHome(); return; }
+  sections.forEach(sec => {
+    const list = movies.filter(m => m.status==='live' && m.section===sec && (m.title.toLowerCase().includes(q) || (m.genre||'').toLowerCase().includes(q) || (m.vj||'').toLowerCase().includes(q)));
+    renderRow(rowIds[sec], list, bgC);
+  });
+}
+
+// ── RENDER HOME ──
+function renderHome() {
+  const sections = ['movie','tvshow','series','animation','indian'];
+  const rowIds = {movie:'row-movie',tvshow:'row-tvshow',series:'row-series',animation:'row-animation',indian:'row-indian'};
+  const bgC = ['#1e2030','#2e1400','#1a1a2e','#2e0a0a','#1a2e0a','#2e1a2e','#0a2e2e','#2e2e0a'];
+  sections.forEach(sec => {
+    const list = movies.filter(m => m.status==='live' && m.section===sec);
+    renderRow(rowIds[sec], list, bgC);
+  });
+}
+function renderRow(rowId, list, bgC) {
+  const row = document.getElementById(rowId);
+  if (!row) return;
+  if (list.length === 0) { row.innerHTML = `<div style="padding:14px 0;color:var(--muted);font-size:.72rem;font-weight:700;white-space:nowrap;">No content yet.</div>`; return; }
+  const isFavArr = list.map(m => favourites.some(f => f.id === m.id));
+  row.innerHTML = list.map((m, i) => `
+    <div class="movie-card" onclick="openPlayer(${m.id})">
+      <div class="movie-card-thumb">
+        ${m.poster ? `<img src="${m.poster}" alt="${m.title}"/>` : `<div class="thumb-ph" style="background:linear-gradient(145deg,${bgC[i%8]},${bgC[(i+3)%8]});"><span style="font-size:.56rem;font-weight:800;color:rgba(255,255,255,.7);line-height:1.3;">${m.title}</span></div>`}
+        <div class="${m.watchType==='free'?'tag-free':'tag-sub'}">${m.watchType==='free'?'FREE':'SUB'}</div>
+        <button class="fav-btn" onclick="toggleFav(${m.id},event)">
+          <svg viewBox="0 0 24 24" fill="${isFavArr[i]?'var(--red)':'none'}" stroke="${isFavArr[i]?'var(--red)':'rgba(255,255,255,.7)'}" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </div>
+      <div class="movie-card-info"><div class="movie-card-title">${m.title}</div><div class="movie-card-vj"><span class="vj-ul">${m.vj||'VJ EMMY'}</span></div></div>
+    </div>`).join('');
+}
+
+// ── FEATURED ──
+function setFeatured(m) {
+  document.getElementById('feat-title').textContent = m.title;
+  document.getElementById('feat-vj').textContent = m.vj || 'VJ EMMY';
+  document.getElementById('feat-genre').textContent = m.genre || 'Drama';
+  document.getElementById('feat-year').textContent = m.year || '2025';
+  if (m.poster) {
+    document.getElementById('feat-img').src = m.poster;
+    document.getElementById('feat-img').style.display = 'block';
+    document.getElementById('feat-ph').style.display = 'none';
+  }
+}
+
+// ── UPLOAD ──
+function handlePoster(e) {
+  const file = e.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    posterDataUrl = ev.target.result;
+    document.getElementById('poster-preview').src = posterDataUrl;
+    document.getElementById('poster-preview').style.display = 'block';
+    document.getElementById('poster-drop-txt').style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+function handleMovieFile(e) {
+  const file = e.target.files[0]; if (!file) return;
+  document.getElementById('drop-title').textContent = file.name;
+  document.getElementById('drop-sub').textContent = (file.size/(1024*1024)).toFixed(1)+' MB';
+  document.getElementById('file-progress').style.display = 'block';
+  document.getElementById('file-name-label').textContent = file.name;
+  videoObjectUrl = URL.createObjectURL(file);
+  let p=0; const iv = setInterval(()=>{p+=Math.random()*18;if(p>=100){p=100;clearInterval(iv);}document.getElementById('prog-bar').style.width=p+'%';document.getElementById('prog-label').textContent=Math.round(p)+'%';},180);
+}
+function uploadMovie() {
+  const title = document.getElementById('inp-title').value.trim();
+  const section = document.getElementById('inp-section').value;
+  const genre = document.getElementById('inp-genre').value;
+  const vj = (document.getElementById('inp-vj').value.trim().toUpperCase()) || 'VJ EMMY';
+  const year = document.getElementById('inp-year').value || '2025';
+  const desc = document.getElementById('inp-desc').value.trim();
+  const watchType = document.getElementById('inp-watch').value;
+  const dlType = document.getElementById('inp-dl').value;
+  const status = document.getElementById('inp-status').value;
+  if (!title) { showToast('Please enter a movie title!'); return; }
+  const m = {id:Date.now(), title, section, genre, vj, year, desc, watchType, dlType, status, poster:posterDataUrl, videoUrl:videoObjectUrl};
+  movies.push(m);
+  if (section==='featured') setFeatured(m);
+  renderHome(); updateStats(); showToast('✓ Uploaded successfully!'); resetForm(); videoObjectUrl=null;
+}
+function resetForm() {
+  ['inp-title','inp-vj','inp-year','inp-desc'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('inp-section').value='movie';
+  document.getElementById('inp-genre').value='';
+  document.getElementById('inp-watch').value='free';
+  document.getElementById('inp-dl').value='sub';
+  document.getElementById('inp-status').value='live';
+  document.getElementById('drop-title').textContent='Tap to upload movie file';
+  document.getElementById('drop-sub').textContent='Or drag & drop here';
+  document.getElementById('file-progress').style.display='none';
+  document.getElementById('poster-preview').style.display='none';
+  document.getElementById('poster-drop-txt').style.display='block';
+  document.getElementById('movie-file').value='';
+  document.getElementById('poster-file').value='';
+  posterDataUrl=null;
+}
+
+// ── MANAGE ──
+function switchTab(name,el){
+  document.querySelectorAll('.atab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active'); document.getElementById('tab-'+name).classList.add('active');
+  if(name==='manage') renderManage();
+}
+function renderManage(){
+  const el=document.getElementById('movie-list');
+  if(movies.length===0){el.innerHTML='<div style="text-align:center;color:var(--muted);font-size:.8rem;padding:34px 0;font-weight:700;">No movies yet.</div>';return;}
+  el.innerHTML=movies.map(m=>`
+    <div class="mli">
+      <div class="mli-thumb">${m.poster?`<img src="${m.poster}"/>`:`<div class="mli-ph">${m.title.substring(0,5)}</div>`}</div>
+      <div class="mli-info"><div class="mli-title">${m.title}</div><div class="mli-meta">${m.genre||''} · ${m.year} · ${m.section}</div><div class="mli-vj">${m.vj}</div><div class="mli-status ${m.status==='live'?'s-live':'s-draft'}">${m.status.toUpperCase()}</div></div>
+      <div class="mli-actions"><button class="btn-e" onclick="toggleStatus(${m.id})">${m.status==='live'?'Draft':'Publish'}</button><button class="btn-d" onclick="deleteMovie(${m.id})">Delete</button></div>
+    </div>`).join('');
+}
+function deleteMovie(id){movies=movies.filter(m=>m.id!==id);renderManage();renderHome();updateStats();showToast('Deleted.');}
+function toggleStatus(id){const m=movies.find(m=>m.id===id);if(m)m.status=m.status==='live'?'draft':'live';renderManage();renderHome();updateStats();showToast('Status updated.');}
+function updateStats(){document.getElementById('stat-total').textContent=movies.length;document.getElementById('stat-live').textContent=movies.filter(m=>m.status==='live').length;document.getElementById('stat-draft').textContent=movies.filter(m=>m.status==='draft').length;}
+
+// ── SUBSCRIPTION ──
+function openSubModal(){document.getElementById('sub-overlay').classList.add('open');}
+function closeSubModal(){document.getElementById('sub-overlay').classList.remove('open');}
+function selPlan(el,plan){document.querySelectorAll('.plan').forEach(p=>p.classList.remove('sel'));el.classList.add('sel');selectedPlan=plan;}
+function subscribePlan(){
+  const msg=encodeURIComponent(`Hello Kenpro Movies! I want to subscribe to the ${selectedPlan} download plan. Please guide me.`);
+  window.open(`https://wa.me/${WA}?text=${msg}`,'_blank');
+  closeSubModal();
+}
+
+// ── CONTACT ──
+function openWA(){const msg=encodeURIComponent('Hello Kenpro Movies! I need help.');window.open(`https://wa.me/${WA}?text=${msg}`,'_blank');}
+function makeCall(){window.open(`tel:${PHONE}`);}
+
+// ── TOAST ──
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+
+renderHome();
+</script>
+
+<!-- INSTALL BANNER -->
+<div id="install-banner" style="display:none;position:absolute;bottom:84px;left:12px;right:12px;background:#1c1c1f;border:1px solid rgba(61,214,245,.25);border-radius:14px;padding:14px 16px;z-index:200;box-shadow:0 8px 32px rgba(0,0,0,.5);">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAG+UlEQVR42u3dS24TWxRGYQYBScoUaaWRSTD/GTCOdGiDIhFkjO06j332czX+Hph70fpQuerY+fT588MvxqruE38JDACMAYAxADAGAMYAwBgAGAMAYwBgDACMAYAxADAGAMYAwBgAGAMAYwBgDACMAYAxADAGAMYAwBgAGAMAYwBgDACMAYAxADBWB8D3Hz8ZuzoAMAAAgAEAAAwAAGAASAfgy5fHwT2J7eFBepvqHh9bd3K5p6evVwcA4i8bf0kALy+vQ7sX+OhrEv9p+O9udAAIDSDfv/wAAEDpyx4AAKD0NT8AAFD6DS8AlJ8DxAKwDd3b7gn+7e1taFEBXP5/AMAtgG344Y4GACkEAADAzcseAADAPYD3YGUBzMUPgGMA79f+ABAA8BGtHADd+N/fzB5Hvi1FAICgAM7DlQGgH38bgBMAAPB692zPPACb+CsC+Lj9CYBBANeu2+cA2MXfCmAlAgAEAnDrrs04ANv4AfBW9wMxXo40W8bfA2D1pdDMkebz3ftvvPbrAFA4/igAWuMHwAIAmeOPAGBF/ABoBJA9/l4A2gh64geAMIAK8XsG0Bs/AAQBVIn/KOhbUa9GsDp+ANwBUCl+jwBG4geAEACP8fcAGPkwiycAWvED4AqAivGPAliBYDR+AAgAqBq/FwAz8QNgEkDl+GcASCGwiB8AfwCs/Ma2CPFbA5iNHwATAIjfFoBl/AAQBxAz/lkAowgk4geAGwBx47cAIBU/AFwAiB2/NgAv8QNABED8+CUAtCKQjB8A5gByxK8FQDp+AJgCyBO/FICj1/EWPwCGAeSKHwAAKB1/RAAyf84OAOKXBaCFYP7P2AHQByBv/PUA7ADoA5A7fmkAcpcoa+MHQBOA/PFLApC9RpcGsAOgD8CmeqzZ8ufwSgCQf5O6Nn4A3AVQJ34JAOvu1Ei85g6APgC14p8FsPZW5exr7gDoA7CpXvd7iH8GgM79+jXxA+A/ADXjHwWg98Bq5LWO4982ABD/IADdJ7Zr4gfAXwC14+8FYHlm5/g12uMHwJVgK8bfA8D60Nr91+iLHwAX0VaNvxWA9ccWpeMHwFm4leNvAeDhc7u3f+9Y/AD4E2/1+KMCmI0fAEUecnkAMPvVhdd/z1z8ACD+1ACO4gcA8bsGsDp+ABC/KoDRH1/UC6A1fgAQfzoAPfEDgPjVAbQi0IgfAIIAIsefAcBI/AAg/qbP8GoD0IofAMTfFKX2l1r1AJiJHwDEHxrAbPwAIH4zACMIpOMHAPGHBCAVPwAGEGSMPwKAFfEDoBNB1vitAPQgWBE/ADogZI4/AoAV8QOgY5njtwRw/tUk2vEDQBRB3PjtAOwAiHYaNGP8NgD2JgAr4weACIL48esD2MXO8wPA8CORWeLXBeAnfgAIfCg+Q/x6AHzFDwChr0WJHr8OAH/xA+AMwPv1fGQEq+/HZ4x/274B4PIhV0QEGg+kMsYPgBu3NSO9OdZ6IpsxfgAcPNzyjkDzSELG+AHQcMTBKwLtMzkZ4wdA4/EGbwgsDqVljB8AdwH8G50XBFanMjPGD4CBsz2WENadyJQAEC9+AFwFcByiBYKV8c8DiBk/ACYOtmkiWB3/HIC48QPgHwD9/yprINCIfxxA7PgB8BfA+HX5yodmWvGPAYgfPwAE79BII9CMvx9AjvgBIHyLUgqBdvx9APLED4AFD6pmEVjE3w4gV/wAWPSkdgaBXwD54gfAwvM6s2+OowGIGD8AFE5tRkEwAyBq/ABQOrYcAcEogMjxA0DxwyveEYwAiB7/6QQA1U9veUag/ZNZPMQPAIPP8Xp9c2zxwyms4weAAYCP4LwhsPp+fsv4AWD8AXZPCKy+n98yfgAoArgVng8Ett/QbBU/AJx8e4Pt+4LdKYD18QNAAUBPjPoIdqcAdOIHgMOvLtFDsDsFoBc/ABYCmLksWY9gdwpAN34AOP7ennUIdqcA9OMHwAIAkrcm5d8c704B2MQPgCBfWiUDYHcKwC5+AAgCWH1WZw7A7hSAbfzlAET5otqsP5DOW/znKwfg5eV1aPfiH31N4v82/Hc3OgAIALgMzheAWP/yAyAYgGvR+QEQ77IHAIEA3ArPB4CY1/y2AJ4BIBGrPYC4b3jtADwDIAeA2Hd7bAA8AyAHgPi3OvUBPAMgB4Ac9/kBAIDSD7kAAIDST3gBAIDSxxsAAIDSZ3sAAIDSB9sAAIDSpzoBYHwcmiPN8Y80Xx5v6FlpAMRfO/7SAIif+MsCIH7iLwuA+Im/LADiJ/6yAIif+MsCIH7iLw2AMS8DAAMAYwBgDACMAYAxADAGAMYAwBgAGAMAYwBgDACMAYAxADAGAMYAwBgAGAMAYwBgDACMAYAxADAGAMYAwBgAGAMAYwBgzHC/AVH2w6YBdlVdAAAAAElFTkSuQmCC" style="width:44px;height:44px;border-radius:10px;" alt="icon"/>
+    <div style="flex:1;">
+      <div style="font-size:.85rem;font-weight:800;color:#f0f0f0;">Install Kenpro Movies</div>
+      <div style="font-size:.68rem;color:#8e8e93;margin-top:1px;">Add to your home screen</div>
+    </div>
+    <button onclick="installApp()" style="background:#3DD6F5;color:#000;font-size:.7rem;font-weight:900;padding:8px 14px;border-radius:8px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;white-space:nowrap;">Install</button>
+    <button onclick="document.getElementById('install-banner').style.display='none'" style="background:transparent;border:none;color:#8e8e93;font-size:1.1rem;cursor:pointer;padding:0 4px;line-height:1;">×</button>
+  </div>
+</div>
+
+<!-- iOS Install Tip -->
+<div id="ios-banner" style="display:none;position:absolute;bottom:84px;left:12px;right:12px;background:#1c1c1f;border:1px solid rgba(61,214,245,.25);border-radius:14px;padding:14px 16px;z-index:200;box-shadow:0 8px 32px rgba(0,0,0,.5);">
+  <div style="display:flex;align-items:flex-start;gap:12px;">
+    <img src="data:image/png;base64,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" style="width:44px;height:44px;border-radius:10px;flex-shrink:0;" alt="icon"/>
+    <div style="flex:1;">
+      <div style="font-size:.85rem;font-weight:800;color:#f0f0f0;">Install Kenpro Movies</div>
+      <div style="font-size:.7rem;color:#8e8e93;margin-top:4px;line-height:1.5;">Tap the <strong style="color:#3DD6F5;">Share</strong> button below, then tap <strong style="color:#3DD6F5;">"Add to Home Screen"</strong> to install the app.</div>
+    </div>
+    <button onclick="document.getElementById('ios-banner').style.display='none'" style="background:transparent;border:none;color:#8e8e93;font-size:1.1rem;cursor:pointer;padding:0 4px;line-height:1;flex-shrink:0;">×</button>
+  </div>
+</div>
+
+<script>
+// ── PWA INSTALL ──
+let deferredPrompt = null;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  document.getElementById('install-banner').style.display = 'block';
+});
+
+window.addEventListener('appinstalled', () => {
+  document.getElementById('install-banner').style.display = 'none';
+  deferredPrompt = null;
+});
+
+function installApp() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(choice => {
+      deferredPrompt = null;
+      document.getElementById('install-banner').style.display = 'none';
+      if (choice.outcome === 'accepted') showToast('App installed! Check your home screen ✓');
+    });
+  }
+}
+
+// iOS detection
+function isIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream; }
+function isInStandaloneMode() { return ('standalone' in window.navigator) && window.navigator.standalone; }
+
+window.addEventListener('load', () => {
+  if (isIOS() && !isInStandaloneMode()) {
+    setTimeout(() => {
+      document.getElementById('ios-banner').style.display = 'block';
+    }, 3000);
+  }
+  // Register service worker
+  if ('serviceWorker' in navigator) {
+    const swCode = `
+      const CACHE = 'kenpro-v1';
+      self.addEventListener('install', e => {
+        e.waitUntil(caches.open(CACHE).then(c => c.addAll(['./', './index.html'])));
+      });
+      self.addEventListener('fetch', e => {
+        e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
+      });
+    `;
+    const blob = new Blob([swCode], {type:'text/javascript'});
+    const swUrl = URL.createObjectURL(blob);
+    navigator.serviceWorker.register(swUrl).catch(()=>{});
+  }
+});
+</script>
+
+</body>
+</html>
